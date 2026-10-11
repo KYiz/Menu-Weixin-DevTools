@@ -8,6 +8,18 @@
   "packOptions": {
     "ignore": [
       {
+        "value": ".git",
+        "type": "folder"
+      },
+      {
+        "value": "幺二菜谱",
+        "type": "folder"
+      },
+      {
+        "value": "Menu-Weixin-DevTools",
+        "type": "folder"
+      },
+      {
         "value": "preview",
         "type": "folder"
       },
