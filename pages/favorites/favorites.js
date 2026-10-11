@@ -1,0 +1,1 @@
+const {getItem}=require('../../data/catalog');const store=require('../../utils/store');Page({data:{items:[]},onShow(){this.setData({items:store.favorites().map(getItem).filter(Boolean)})},open(e){wx.navigateTo({url:'/pages/detail/detail?id='+e.currentTarget.dataset.id})},add(e){store.add(e.currentTarget.dataset.id);wx.showToast({title:'已加入小餐车',icon:'none'})}});

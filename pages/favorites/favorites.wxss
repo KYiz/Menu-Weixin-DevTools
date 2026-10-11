@@ -1,0 +1,1 @@
+.fav-page{padding:28rpx 24rpx}.subtitle{font-size:22rpx;margin:8rpx 0 24rpx}.fav-card{display:flex;align-items:center;gap:18rpx;padding:15rpx;margin-bottom:15rpx}.fav-card image{width:130rpx;height:130rpx;border-radius:18rpx}.fav-main{flex:1}.fav-name{font-size:27rpx;font-weight:800}.fav-main .muted{font-size:21rpx;margin:8rpx 0}.fav-card .btn{padding:12rpx 20rpx}

@@ -1,0 +1,57 @@
+{
+  "description": "小霞饱饱食堂原生微信点餐小程序",
+  "appid": "wx4421125aa02fbd35",
+  "projectname": "小霞饱饱食堂",
+  "miniprogramRoot": "./",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "compileType": "miniprogram",
+  "packOptions": {
+    "ignore": [
+      {
+        "value": "preview",
+        "type": "folder"
+      },
+      {
+        "value": "tests",
+        "type": "folder"
+      },
+      {
+        "value": "tools",
+        "type": "folder"
+      },
+      {
+        "value": "cloudfunctions",
+        "type": "folder"
+      },
+      {
+        "value": "README.md",
+        "type": "file"
+      }
+    ],
+    "include": []
+  },
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "simulatorPluginLibVersion": {},
+  "editorSetting": {}
+}

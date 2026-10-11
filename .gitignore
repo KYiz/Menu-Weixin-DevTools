@@ -1,0 +1,12 @@
+# Local previews and source artwork are not part of the mini program upload.
+preview/
+
+# Unrelated nested repository and machine-specific WeChat DevTools settings.
+幺二菜谱/
+project.private.config.json
+
+# Local dependency and editor output.
+node_modules/
+cloudfunctions/**/node_modules/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+.diagnostic { padding: 40rpx; color: #292522; }
+.heading { font-size: 40rpx; font-weight: bold; margin-bottom: 30rpx; }
+.row { padding: 22rpx 0; border-bottom: 1rpx solid #e8dfd3; display: flex; flex-direction: column; word-break: break-all; }
+.label { color: #786f65; font-size: 26rpx; margin-bottom: 8rpx; }
+button { margin-top: 40rpx; background: #ffd45b; color: #292522; }
+.copy-feedback { margin-top: 20rpx; font-size: 26rpx; word-break: break-all; }

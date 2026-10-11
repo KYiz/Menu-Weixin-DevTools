@@ -1,0 +1,8 @@
+{
+  "pages": ["pages/menu/menu", "pages/detail/detail", "pages/recipe/recipe", "pages/cook/cook", "pages/cart/cart", "pages/orders/orders", "pages/order/order", "pages/favorites/favorites", "pages/random/random", "pages/clouddiag/clouddiag"],
+  "subPackages": [{"root":"pages/chef","pages":["chef"]}],
+  "window": { "navigationBarTitleText": "小霞饱饱食堂", "navigationBarBackgroundColor": "#fff6de", "navigationBarTextStyle": "black", "backgroundColor": "#fffaf0" },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

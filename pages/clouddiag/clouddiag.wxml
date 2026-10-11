@@ -1,0 +1,11 @@
+<view class="diagnostic">
+  <view class="heading">云开发诊断</view>
+  <view class="row"><text class="label">状态</text><text>{{status === 'loading' ? '检查中' : status === 'success' ? '成功' : '失败'}}</text></view>
+  <view class="row"><text class="label">调用阶段</text><text selectable="true">{{stage}}</text></view>
+  <view class="row"><text class="label">错误码</text><text selectable="true">{{code}}</text></view>
+  <view class="row"><text class="label">云环境 ID</text><text selectable="true">{{envId}}</text></view>
+  <view class="row"><text class="label">结果信息</text><text selectable="true">{{message}}</text></view>
+  <view wx:if="{{status === 'success'}}" class="row"><text class="label">当前账号 OpenID</text><text selectable="true">{{openid}}</text></view>
+  <button wx:if="{{status === 'success'}}" bindtap="copyOpenid">复制 OpenID</button>
+  <view wx:if="{{copyFeedback}}" class="copy-feedback"><text selectable="true">{{copyFeedback}}</text></view>
+</view>
