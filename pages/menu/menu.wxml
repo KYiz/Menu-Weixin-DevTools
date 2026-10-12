@@ -1,5 +1,5 @@
 <view class="page menu-page">
-  <image class="top-banner" src="/assets/images/shinchan-kitchen.jpg" mode="aspectFill"/>
+  <view class="top-banner-frame"><image class="top-banner" src="/assets/images/shinchan-kitchen.jpg" mode="widthFix"/></view>
   <view class="shop-info">
     <view class="shop-main"><view class="shop-brand" catchlongpress="diagnoseCloud"><text class="shop-name">小霞饱饱食堂</text><text class="delivery">⚡ 闪电专送</text></view><view wx:if="{{showChefEntry}}" class="chef-entry" bindtap="goChef">👨‍🍳 主厨入口 ›</view></view>
     <view class="notice">🔊 fxx专属食堂 闪电目标喂饱宝宝</view>

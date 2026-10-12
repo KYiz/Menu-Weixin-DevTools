@@ -5,7 +5,7 @@
 .dish-list{flex:1;min-width:0;box-sizing:border-box}
 
 /* Menu cover and feature proportions follow the supplied phone reference. */
-.top-banner{height:245rpx}
+.top-banner-frame{height:245rpx}
 .shop-info{padding:20rpx 24rpx 0}
 .shop-main{min-height:66rpx;gap:12rpx}
 .shop-name{font-size:37rpx}
@@ -80,6 +80,7 @@
   .special-feature image{height:120rpx}
 }
 
-/* Match the reference: a shallow edge-to-edge cover and a full second illustration. */
-.top-banner{width:100%;height:245rpx;background:#fff4dc}
+/* Keep the shallow cover while showing more of the characters' heads. */
+.top-banner-frame{flex:none;width:100%;overflow:hidden;background:#fff4dc}
+.top-banner{position:relative;top:-18rpx;display:block;width:100%;height:auto}
 .kitchen-strip{height:auto}
