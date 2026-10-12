@@ -1,9 +1,58 @@
-.chef-page{padding-bottom:50rpx}.chef-hero{background:linear-gradient(135deg,#ffdc79,#fff0cc);padding:40rpx 28rpx 32rpx}.kicker{font-size:21rpx;color:#ad713a;font-weight:800}.title{font-size:39rpx;font-weight:900;margin:13rpx 0}.subtitle{font-size:23rpx;color:#8d6e50}.back{display:inline-block;margin-top:20rpx;background:#fff8df;padding:10rpx 18rpx;border-radius:99rpx;color:#8c6034;font-size:22rpx}.chef-shortcuts{display:flex;gap:16rpx;padding:20rpx 24rpx}.chef-shortcuts .cream-card{flex:1;padding:19rpx;font-weight:800}.chef-shortcuts text{font-size:37rpx;display:block}.chef-shortcuts .shortcut-count{font-size:21rpx;color:#a79685;font-weight:400}.local-note{margin:0 24rpx;background:#eaf5f7;padding:18rpx;border-radius:17rpx;font-size:21rpx;color:#607c85;line-height:1.5}.list-title{margin:27rpx 24rpx 17rpx}.chef-cats{white-space:nowrap;padding:0 24rpx 18rpx}.chef-cat{display:inline-block;background:#fff0d5;border-radius:99rpx;margin-right:12rpx;padding:13rpx 20rpx;color:#8d765f;font-size:23rpx}.chef-cat.active{background:#ffce4e;color:#493727;font-weight:900}.chef-dish{display:flex;gap:18rpx;margin:0 24rpx 15rpx;padding:15rpx;align-items:center}.chef-dish image{width:115rpx;height:115rpx;border-radius:14rpx}.dish-name{font-weight:800;font-size:27rpx}.chef-dish .muted{font-size:20rpx;margin:6rpx 0}.view-recipe{color:#d58339;font-size:20rpx;font-weight:700}
+.chef-page{min-height:100vh;padding-bottom:calc(60rpx + env(safe-area-inset-bottom));background:#fff7f3;color:#57323b}
+.chef-page .cream-card{background:#fffdfb;border:2rpx solid #fbe4e6;border-radius:24rpx;box-shadow:0 8rpx 24rpx rgba(151,75,88,.07)}
 
-/* Long dish names must wrap instead of pushing the card beyond the screen. */
-.chef-dish image{flex:none}
+.chef-hero{position:relative;display:flex;align-items:center;min-height:245rpx;margin:18rpx 24rpx 0;padding:30rpx 26rpx;overflow:hidden;border:2rpx solid #ffbfcd;border-radius:26rpx;background:linear-gradient(130deg,#fff1f3,#ffe4e8);box-shadow:0 8rpx 22rpx rgba(221,105,137,.1)}
+.chef-hero-copy{position:relative;z-index:1;flex:1;min-width:0;padding-right:14rpx}
+.kicker{display:inline-block;padding:7rpx 13rpx;border-radius:99rpx;background:#fffdfb;color:#cf6682;font-size:20rpx;font-weight:800}
+.title{margin:14rpx 0 8rpx;color:#653341;font-size:38rpx;font-weight:900;line-height:1.25}
+.subtitle{color:#a87482;font-size:22rpx;line-height:1.45}
+.back{display:inline-block;margin-top:19rpx;padding:10rpx 17rpx;border:2rpx solid #f7d2da;border-radius:99rpx;background:#fffdfb;color:#a95570;font-size:21rpx;font-weight:800}
+.chef-hero-art{flex:none;width:168rpx;height:168rpx;border:5rpx solid #fffdfb;border-radius:22rpx;background:#fffaf5;box-shadow:0 6rpx 16rpx rgba(160,76,94,.12)}
+
+.chef-shortcuts{display:flex;gap:16rpx;padding:20rpx 24rpx}
+.chef-shortcuts .cream-card{flex:1;min-width:0;padding:20rpx;color:#733d4a;font-size:24rpx;font-weight:800}
+.chef-shortcuts text{display:block;font-size:36rpx;line-height:1.15}
+.chef-shortcuts .shortcut-count{margin-top:5rpx;color:#c17e90;font-size:21rpx;font-weight:600}
+.local-note{margin:0 24rpx;padding:17rpx 20rpx;border:2rpx solid #ffdbe3;border-radius:18rpx;background:#fff1f4;color:#9a6374;font-size:21rpx;line-height:1.5}
+.list-title{margin:30rpx 24rpx 17rpx;color:#63343e;font-size:32rpx}
+.chef-empty{margin:0 24rpx 18rpx;padding:29rpx;border:2rpx dashed #f5cad4;border-radius:20rpx;background:#fffdfb;color:#ad8290;text-align:center;font-size:23rpx}
+
+.chef-order-group{margin:0 24rpx 16rpx}
+.chef-order,.chef-detail{margin:0;padding:23rpx 24rpx}
+.chef-page .chef-order{border-left:7rpx solid #fa91a8}
+.chef-order-head{display:flex;align-items:center;justify-content:space-between;gap:12rpx;color:#a1888d;font-size:21rpx}
+.chef-order-head .status{flex:none;padding:7rpx 13rpx;border-radius:99rpx;background:#ffeaf0;color:#d75c7c;font-size:20rpx;font-weight:900}
+.chef-order-summary{margin:15rpx 0;color:#65343f;font-size:27rpx;font-weight:900;line-height:1.4;overflow-wrap:break-word}
+.chef-order-meta{display:flex;align-items:center;flex-wrap:wrap;gap:10rpx;color:#a78c91;font-size:20rpx}
+.chef-mode{padding:5rpx 11rpx;border-radius:99rpx;background:#fff0df;color:#bb7773;font-size:20rpx;font-weight:800}
+.chef-order-meta .muted{color:#a88b92;word-break:break-all}
+.chef-detail{margin-top:8rpx}
+.chef-page .chef-detail{background:#fff8f8}
+.chef-detail .section-title{margin-bottom:7rpx;color:#9d4e66;font-size:28rpx}
+.chef-detail .muted{color:#aa8b95;font-size:20rpx}
+.chef-line{display:flex;justify-content:space-between;gap:18rpx;padding:13rpx 0;border-bottom:1rpx dashed #f4dce2;color:#70434e;font-size:23rpx}
+.chef-line text:first-child{flex:1;min-width:0;overflow-wrap:break-word}
+.chef-line text:last-child{flex:none;color:#e77c83;font-weight:800}
+.chef-note{margin-top:10rpx;color:#805d68;font-size:22rpx;line-height:1.55;word-break:break-all}
+.chef-action{width:100%;margin-top:20rpx;border:4rpx solid #ffb3c3;border-radius:99rpx;background:linear-gradient(180deg,#ff8fa6,#f4547a);color:#fff;box-shadow:0 6rpx 14rpx rgba(224,74,112,.16)}
+.chef-action[disabled]{opacity:.6}
+
+.chef-cats{white-space:nowrap;padding:0 24rpx 18rpx}
+.chef-cat{display:inline-block;margin-right:12rpx;padding:13rpx 20rpx;border:2rpx solid #f9dce2;border-radius:99rpx;background:#fffdfb;color:#a57782;font-size:22rpx}
+.chef-cat.active{border-color:#ff9fb3;background:#ffbdcb;color:#6b3645;font-weight:900}
+.chef-dish{display:flex;align-items:center;gap:18rpx;margin:0 24rpx 15rpx;padding:15rpx}
+.chef-dish image{flex:none;width:120rpx;height:120rpx;border-radius:15rpx;background:#fff1f3}
 .chef-dish>view{flex:1;min-width:0}
-.dish-name{overflow-wrap:break-word}
+.dish-name{color:#63343e;font-size:27rpx;font-weight:900;overflow-wrap:break-word}
+.chef-dish .muted{margin:7rpx 0;color:#a88b92;font-size:20rpx}
+.view-recipe{color:#e15e80;font-size:20rpx;font-weight:800}
 
-.chef-page{padding-bottom:calc(50rpx + env(safe-area-inset-bottom))}
-.chef-gate{margin:40rpx 24rpx;padding:32rpx;text-align:center}.chef-gate view:first-child{font-size:32rpx;font-weight:800}.chef-gate text{display:block;margin:20rpx 0;color:#8d765f}.chef-gate button{margin:24rpx 0}.chef-empty{margin:0 24rpx 18rpx;color:#a79685}.chef-order-group{margin:0 24rpx 15rpx}.chef-order,.chef-detail{margin:0;padding:22rpx}.chef-detail{margin-top:8rpx}.chef-order-head{display:flex;justify-content:space-between;color:#9b8e83;font-size:22rpx}.chef-order-head .status{color:#d58339;font-weight:800}.chef-order-summary{font-weight:800;margin:12rpx 0}.chef-order .muted,.chef-detail .muted{font-size:21rpx}.chef-line{display:flex;justify-content:space-between;border-bottom:1rpx solid #f3e9de;padding:13rpx 0}.chef-note{font-size:23rpx;line-height:1.6;margin-top:10rpx;word-break:break-all}.chef-action{margin-top:20rpx}
+.chef-gate{margin:40rpx 24rpx;padding:36rpx 30rpx;text-align:center}
+.chef-gate view:first-child{color:#713d4c;font-size:31rpx;font-weight:900}
+.chef-gate text{display:block;margin:20rpx 0;color:#a37885;font-size:23rpx}
+.chef-gate button{margin:24rpx 0;border-radius:99rpx;background:#ffbdcb;color:#713d4c}
+
+@media (max-width:360px){
+  .chef-hero-art{width:126rpx;height:126rpx}
+  .title{font-size:33rpx}
+}
