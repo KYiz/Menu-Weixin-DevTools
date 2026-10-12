@@ -24,7 +24,7 @@
 .special-cta{font-size:19rpx;margin-top:8rpx;padding:6rpx 11rpx}
 
 /* Pink menu panel from the supplied phone reference. */
-.menu-page{display:flex;flex-direction:column;box-sizing:border-box;height:100vh;min-height:0;overflow:hidden;background:#fff7f3;padding-bottom:calc(171rpx + env(safe-area-inset-bottom))}
+.menu-page{display:flex;flex-direction:column;box-sizing:border-box;min-height:100vh;overflow:visible;background:#fff7f3;padding-bottom:calc(171rpx + env(safe-area-inset-bottom))}
 .top-banner,.shop-info,.kitchen-strip,.special-feature{flex:none}
 .shop-info{background:#fffdfb}
 .shop-name{color:#4f2c30}
@@ -37,12 +37,12 @@
 .kitchen-strip{border-radius:16rpx}
 .special-feature{margin-bottom:22rpx;border-color:#ffbccd;background:#fff3f6}
 .special-cta{border-radius:10rpx}
-.menu-layout{display:flex;flex:1 1 0;width:calc(100% - 36rpx);height:0;min-height:0;margin:0 18rpx;box-sizing:border-box;overflow:hidden;align-items:stretch;border-radius:22rpx;background:#fffdfb;box-shadow:0 8rpx 24rpx rgba(151,75,88,.07)}
-.cat-list{flex:0 0 155rpx;width:155rpx;height:100%;min-height:0;background:#fff0ed;border-radius:22rpx 0 0 22rpx}
+.menu-layout{display:flex;flex:1 0 auto;width:calc(100% - 36rpx);height:auto;min-height:0;margin:0 18rpx;box-sizing:border-box;overflow:visible;align-items:stretch;border-radius:22rpx;background:#fffdfb;box-shadow:0 8rpx 24rpx rgba(151,75,88,.07)}
+.cat-list{flex:0 0 155rpx;width:155rpx;height:auto;min-height:0;background:#fff0ed;border-radius:22rpx 0 0 22rpx}
 .cat{min-height:98rpx;gap:4rpx;color:#955d67;border-left-color:transparent;border-radius:0 18rpx 18rpx 0}
 .cat-emoji{font-size:30rpx}
 .cat.active{background:#fffdfb;border-left-color:#f4557a;color:#542c35}
-.dish-list{flex:1 1 0;width:0;min-width:0;height:100%;min-height:0;padding:14rpx 28rpx 12rpx 18rpx;box-sizing:border-box}
+.dish-list{flex:1 1 0;width:0;min-width:0;height:auto;min-height:0;padding:14rpx 28rpx 12rpx 18rpx;box-sizing:border-box}
 .group-title{margin:5rpx 0 4rpx;padding-bottom:12rpx;border-bottom:1rpx solid #f6e8e6;color:#683940;font-size:27rpx;font-weight:900}
 .group-heart{margin-left:6rpx;color:#f387a2}
 .dish-card{display:flex;width:100%;min-width:0;align-items:flex-start;box-sizing:border-box;min-height:240rpx;border-bottom:1rpx solid #f7e8e5;gap:18rpx;padding:20rpx 0}

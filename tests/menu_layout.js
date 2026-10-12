@@ -25,10 +25,12 @@ const wxss = fs.readFileSync(path.join(__dirname, '../pages/menu/menu.wxss'), 'u
 assert.ok(wxml.includes('class="dish-price"') && wxml.includes('class="small-add"'));
 assert.ok(wxml.includes('class="small-add" data-id="{{item.id}}" catchtap="add" aria-role="button"'));
 assert.ok(!wxml.includes('<button class="small-add"'));
-assert.ok(wxml.includes('<scroll-view class="cat-list" scroll-y="true">'));
-assert.ok(wxml.includes('<scroll-view class="dish-list" scroll-y="true" scroll-into-view="dish-group-{{selected}}">'));
-assert.ok(wxml.includes('id="dish-group-{{selected}}"'));
+assert.ok(wxml.includes('<view class="cat-list">'));
+assert.ok(wxml.includes('<view class="dish-list">'));
+assert.ok(!wxml.includes('<scroll-view'));
 assert.ok(!wxml.includes('footerStyle'));
-assert.ok(wxss.includes('.menu-layout{display:flex;flex:1 1 0;'));
+assert.ok(wxss.includes('.menu-page{display:flex;flex-direction:column;box-sizing:border-box;min-height:100vh;overflow:visible;'));
+assert.ok(wxss.includes('.menu-layout{display:flex;flex:1 0 auto;'));
+assert.ok(wxss.includes('.cat{min-height:98rpx;'));
 assert.ok(wxss.includes('padding-bottom:calc(171rpx + env(safe-area-inset-bottom))'));
-console.log('PASS: menu columns scroll independently and footer space matches its safe-area height');
+console.log('PASS: menu columns move with the page and footer space matches its safe-area height');

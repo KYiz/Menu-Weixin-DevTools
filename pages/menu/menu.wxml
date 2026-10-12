@@ -8,9 +8,9 @@
   <image class="kitchen-strip" src="/assets/images/kitchen-strip.jpg" mode="aspectFill"/>
   <view class="special-feature" bindtap="detail" data-id="special-love"><image src="/assets/images/shinchan-love.jpg" mode="aspectFill"/><view class="special-copy"><view class="special-kicker">💗 女朋友专属 · 无限供应</view><view class="special-title">可亲可抱可爱爱</view><view class="special-desc">主厨限定，甜蜜不限量</view><view class="special-cta">立即召唤闪电 ⚡</view></view></view>
   <view class="menu-layout">
-    <scroll-view class="cat-list" scroll-y="true"><view wx:for="{{categories}}" wx:key="id" class="cat {{selected===item.id?'active':''}}" data-id="{{item.id}}" bindtap="tapCategory"><text class="cat-emoji">{{item.emoji}}</text><text>{{item.short}}</text></view></scroll-view>
-    <scroll-view class="dish-list" scroll-y="true" scroll-into-view="dish-group-{{selected}}">
-      <view id="dish-group-{{selected}}" class="group-title">{{selectedName}} <text class="group-heart">♡</text></view>
+    <view class="cat-list"><view wx:for="{{categories}}" wx:key="id" class="cat {{selected===item.id?'active':''}}" data-id="{{item.id}}" bindtap="tapCategory"><text class="cat-emoji">{{item.emoji}}</text><text>{{item.short}}</text></view></view>
+    <view class="dish-list">
+      <view class="group-title">{{selectedName}} <text class="group-heart">♡</text></view>
       <view wx:for="{{visible}}" wx:key="id" class="dish-card">
         <image class="dish-img" src="{{item.image}}" mode="aspectFill" data-id="{{item.id}}" bindtap="detail"/>
         <view class="dish-info" data-id="{{item.id}}" bindtap="detail">
@@ -24,7 +24,7 @@
           </view>
         </view>
       </view>
-    </scroll-view>
+    </view>
   </view>
   <view class="sticky-actions"><view class="cart-bar" bindtap="goCart"><image class="checkout-art" src="/assets/images/checkout-art.jpg" mode="widthFix"/><view class="cart-badge">{{cartCount}}</view><view class="cart-info"><view class="cart-main"><text class="cart-number">{{cartCount}}</text><text>件商品</text><text class="cart-total">⚡ {{total}}</text></view><view class="cart-caption">有你在，一起吃什么都好吃～♥</view></view><view class="cart-checkout">去结算 ›</view></view></view>
 </view>
