@@ -27,4 +27,8 @@ assert.ok(categories.every(category=>!category.image),'unused category artwork s
 const allPages=app.pages.concat(app.subPackages.flatMap(pkg=>pkg.pages.map(page=>pkg.root+'/'+page)));
 for(const page of allPages){for(const ext of ['.js','.json','.wxml','.wxss'])assert.ok(fs.existsSync(path.join(__dirname,'..',page+ext)),`missing ${page+ext}`);const js=fs.readFileSync(path.join(__dirname,'..',page+'.js'),'utf8'),wxml=fs.readFileSync(path.join(__dirname,'..',page+'.wxml'),'utf8');for(const [,event] of wxml.matchAll(/(?:bindtap|catchtap|bindchange|bindinput|catchlongpress)="([^"]+)"/g))assert.ok(js.includes(event+'('),`missing event ${event} on ${page}`);for(const route of js.match(/\/pages\/[a-z]+\/[a-z]+/g)||[])assert.ok(allPages.includes(route.slice(1)),`missing route ${route}`)}
 assert.ok(fs.existsSync(path.join(__dirname,'..','assets/images/shinchan-kitchen.jpg')));assert.ok(fs.existsSync(path.join(__dirname,'..','assets/images/kitchen-strip.jpg')));assert.ok(fs.existsSync(path.join(__dirname,'..','assets/images/shinchan-love.jpg')));
+const menuWxml=fs.readFileSync(path.join(__dirname,'..','pages/menu/menu.wxml'),'utf8');
+assert.ok(fs.existsSync(path.join(__dirname,'..','assets/images/checkout-art.jpg')));
+assert.ok(menuWxml.includes('/assets/images/checkout-art.jpg')&&menuWxml.includes('{{cartCount}}')&&menuWxml.includes('{{total}}'));
+assert.ok(menuWxml.includes('<scroll-view class="cat-list" scroll-y="true">')&&menuWxml.includes('<scroll-view class="dish-list" scroll-y="true"'),'menu columns must scroll independently');
 console.log('PASS: 9 categories, 48 items, 47 complete recipes and matching times, local images, scaling, favorites, cart, 0-price and mixed orders, page routes and handlers');

@@ -32,7 +32,7 @@
 
 - `data/catalog.js`：分类、菜名、价格、供应状态、推荐状态和图片路径。特殊服务 ID 是 `special-love`，价格保持 0。新增普通菜品时，给它稳定的 ID，并在 `data/recipes.js` 添加同 ID 菜谱。
 - `data/recipes.js`：每份菜谱的两人份食材与调味料、预处理、步骤、火候、时间、注意事项和装盘建议。格式为 `名称|数字|单位`；页面可按 1 至 4 人份比例换算用量，烹饪时间不会按人数线性变化。
-- `assets/images/`：所有图片都在本地。47 道普通菜各有一张按菜品内容绘制的 JPG 图片，位于 `assets/images/dishes/<菜品ID>.jpg`。情侣服务图是 `shinchan-love.jpg`；首页顶部与菜单横幅分别是 `shinchan-kitchen.jpg` 和 `kitchen-strip.jpg`，均由用户提供的参考图本地压缩生成。
+- `assets/images/`：所有图片都在本地。47 道普通菜各有一张按菜品内容绘制的 JPG 图片，位于 `assets/images/dishes/<菜品ID>.jpg`。情侣服务图是 `shinchan-love.jpg`；首页顶部与菜单横幅分别是 `shinchan-kitchen.jpg` 和 `kitchen-strip.jpg`；固定结算栏插画是 `checkout-art.jpg`。这些素材由用户提供的图片本地压缩生成。
 - `preview/original-images/` 保存优化前的原图，不进入小程序代码包。更换图片后，可用安装了 Pillow 的 Python 运行 `python tools/optimize_images.py` 重新优化；若要以新图替换备份，请同时更换对应的 `preview/original-images/` 文件。
 - `preview/unused-category-images/` 保存目前界面未引用的八张分类插画，不进入代码包；分类列表使用表情符号，视觉布局不变。
 - `utils/store.js`：本地收藏、购物车、订单和订单文字格式。数据键使用 `lightning-v1-` 前缀；清除微信小程序缓存会删除本机记录。
@@ -41,9 +41,9 @@
 
 ## 验证
 
-在项目根目录运行 `node tests/validate.js`、`node tests/page_flows.js`、`node tests/cloud_orders.js`、`node tests/cloud_pages.js`、`node tests/order_privacy.js`、`node tests/chef_flow.js`、`node tests/order_sync.js`、`node tests/cloud_diagnostic.js`、`node tests/package_size.js` 和 `python tests/validate_wxml.py`。它们检查数据与菜谱时间、图片、人数换算、重复下单拦截、云函数身份边界、跨设备订单与状态、云端失败兜底、本机订单归属隔离、诊断入口、页面文件及打包源文件体积。开发时也可对所有 JS 运行 `node --check`。
+在项目根目录运行 `node tests/validate.js`、`node tests/menu_layout.js`、`node tests/page_flows.js`、`node tests/cloud_orders.js`、`node tests/cloud_pages.js`、`node tests/order_privacy.js`、`node tests/chef_flow.js`、`node tests/order_sync.js`、`node tests/cloud_diagnostic.js`、`node tests/package_size.js` 和 `python tests/validate_wxml.py`。它们检查菜单安全区布局、数据与菜谱时间、图片、人数换算、重复下单拦截、云函数身份边界、跨设备订单与状态、云端失败兜底、本机订单归属隔离、诊断入口、页面文件及打包源文件体积。开发时也可对所有 JS 运行 `node --check`。
 
-图片资源优化后，`assets/images/` 约 1.40 MB。`project.config.json` 排除 `preview/`、`tests/`、`tools/`、`cloudfunctions/` 和 README；云函数会单独部署。主厨页采用普通分包，运行 `node tests/package_size.js` 可查看主包和分包的源码体积。`app.json` 已开启 `lazyCodeLoading: requiredComponents`。图片总量仍高于开发者工具建议的 200 KB；47 张本地菜品图无法在保留当前画质的同时压到该建议值。上述体积不是微信开发者工具生成的最终代码包大小，上传前请以开发者工具的检查为准。
+图片资源优化后，`assets/images/` 约 1.43 MB。`project.config.json` 排除 `preview/`、`tests/`、`tools/`、`cloudfunctions/` 和 README；云函数会单独部署。主厨页采用普通分包，运行 `node tests/package_size.js` 可查看主包和分包的源码体积。`app.json` 已开启 `lazyCodeLoading: requiredComponents`。图片总量仍高于开发者工具建议的 200 KB；47 张本地菜品图无法在保留当前画质的同时压到该建议值。上述体积不是微信开发者工具生成的最终代码包大小，上传前请以开发者工具的检查为准。
 
 当前环境没有微信开发者工具，未完成微信编译、模拟器或 iPhone 真机验证；上传前请按上面的步骤在开发者工具中实测，并确认最终主包低于平台限制。菜谱中的食品安全提示参考[新西兰食品安全家庭烹饪指导](https://www.mpi.govt.nz/food-safety-home/preparing-and-storing-food-safely-at-home/safe-food-preparation-cooking-and-storage-at-home)和[USDA 食品安全温度表](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart)，实际烹饪以食材包装和当地指导为准。
 

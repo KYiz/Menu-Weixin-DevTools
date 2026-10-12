@@ -10,16 +10,21 @@ function displayOrder(order) {
 }
 
 Page({
-  data: { categories, selected: 'chicken', visible: [], authorized: false, loading: true, accessError: '', orders: [], selectedOrder: null, orderCount: 0, favCount: 0, updating: false },
+  data: { categories, selected: 'chicken', visible: [], authorized: false, loading: true, accessError: '', orders: [], selectedKey: '', selectedOrder: null, orderCount: 0, favCount: 0, updating: false },
   onLoad() { this.select('chicken'); },
   onShow() { this.setData({ favCount: store.favorites().length }); this.refreshOrders(); },
   refreshOrders() {
     const serial = this.refreshSerial = (this.refreshSerial || 0) + 1;
-    this.setData({ authorized: false, loading: true, accessError: '', orders: [], selectedOrder: null });
+    this.selectionSerial = (this.selectionSerial || 0) + 1;
+    this.selectionTargetKey = this.selectedKey || '';
+    this.setData({ authorized: false, loading: true, accessError: '', orders: [], selectedKey: '', selectedOrder: null });
     return cloudOrders.chefList().then(orders => {
       if (serial !== this.refreshSerial) return;
       const shown = orders.map(displayOrder);
-      this.setData({ authorized: true, loading: false, orders: shown, orderCount: shown.length, selectedOrder: shown.find(order => order.key === this.selectedKey) || null });
+      const selectedOrder = shown.find(order => order.key === this.selectedKey) || null;
+      this.selectedKey = selectedOrder ? selectedOrder.key : '';
+      this.selectionTargetKey = this.selectedKey;
+      this.setData({ authorized: true, loading: false, orders: shown, orderCount: shown.length, selectedKey: this.selectedKey, selectedOrder });
     }).catch(error => {
       if (serial !== this.refreshSerial) return;
       cloudError.log('主厨订单读取失败', error);
@@ -27,8 +32,34 @@ Page({
     });
   },
   chooseOrder(e) {
-    this.selectedKey = e.currentTarget.dataset.key;
-    this.setData({ selectedOrder: this.data.orders.find(order => order.key === this.selectedKey) || null });
+    const { key, index } = e.currentTarget.dataset;
+    const activeKey = this.selectionTargetKey === undefined ? this.data.selectedKey : this.selectionTargetKey;
+    const selectedOrder = key === activeKey ? null : this.data.orders.find(order => order.key === key) || null;
+    this.selectionTargetKey = selectedOrder ? selectedOrder.key : '';
+    const serial = this.selectionSerial = (this.selectionSerial || 0) + 1;
+    this.measureOrder(index, before => {
+      if (serial !== this.selectionSerial) return;
+      this.selectedKey = selectedOrder ? selectedOrder.key : '';
+      this.setData({ selectedKey: this.selectedKey, selectedOrder }, () => {
+        if (!before || serial !== this.selectionSerial) return;
+        this.measureOrder(index, after => {
+          if (!after || serial !== this.selectionSerial) return;
+          const delta = after.top - before.top;
+          if (delta && typeof wx.pageScrollTo === 'function') {
+            wx.pageScrollTo({ scrollTop: Math.max(0, before.scrollTop + delta), duration: 0 });
+          }
+        });
+      });
+    });
+  },
+  measureOrder(index, callback) {
+    if (index === undefined || typeof wx.createSelectorQuery !== 'function') { callback(null); return; }
+    wx.createSelectorQuery().in(this).select('#chef-order-' + index).boundingClientRect()
+      .selectViewport().scrollOffset().exec(results => {
+        const rect = results && results[0];
+        const viewport = results && results[1];
+        callback(rect && viewport ? { top: rect.top, scrollTop: viewport.scrollTop } : null);
+      });
   },
   advanceStatus() {
     const order = this.data.selectedOrder;

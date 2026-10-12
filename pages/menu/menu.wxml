@@ -7,6 +7,24 @@
   </view>
   <image class="kitchen-strip" src="/assets/images/kitchen-strip.jpg" mode="aspectFill"/>
   <view class="special-feature" bindtap="detail" data-id="special-love"><image src="/assets/images/shinchan-love.jpg" mode="aspectFill"/><view class="special-copy"><view class="special-kicker">💗 女朋友专属 · 无限供应</view><view class="special-title">可亲可抱可爱爱</view><view class="special-desc">主厨限定，甜蜜不限量</view><view class="special-cta">立即召唤闪电 ⚡</view></view></view>
-  <view class="menu-layout"><scroll-view class="cat-list" scroll-y="true"><view wx:for="{{categories}}" wx:key="id" class="cat {{selected===item.id?'active':''}}" data-id="{{item.id}}" bindtap="tapCategory"><text class="cat-emoji">{{item.emoji}}</text><text>{{item.short}}</text></view></scroll-view><scroll-view class="dish-list" scroll-y="true"><view class="group-title">{{selectedName}}</view><view wx:for="{{visible}}" wx:key="id" class="dish-card"><image class="dish-img" src="{{item.image}}" mode="aspectFill" data-id="{{item.id}}" bindtap="detail"/><view class="dish-info" data-id="{{item.id}}" bindtap="detail"><view class="dish-name">{{item.name}}</view><view class="dish-desc">{{item.description}}</view><view class="dish-meta" wx:if="{{item.type==='dish'}}">{{item.minutes}} 分钟 · {{item.difficulty}} 星难度</view><view class="dish-meta" wx:else>女朋友专属 · 无限供应</view><view class="dish-bottom"><text class="price">⚡ {{item.price}}</text><button class="small-add" data-id="{{item.id}}" catchtap="add">点它</button></view></view></view></scroll-view></view>
-  <view class="sticky-actions"><view class="cart-bar" bindtap="goCart"><view class="cart-left"><text class="cart-symbol">🛒</text><view><view>⚡ {{total}} <text class="cart-count">· {{cartCount}} 件</text></view><view class="cart-caption">View Cart</view></view></view><view class="cart-right">去结算</view></view></view>
+  <view class="menu-layout">
+    <scroll-view class="cat-list" scroll-y="true"><view wx:for="{{categories}}" wx:key="id" class="cat {{selected===item.id?'active':''}}" data-id="{{item.id}}" bindtap="tapCategory"><text class="cat-emoji">{{item.emoji}}</text><text>{{item.short}}</text></view></scroll-view>
+    <scroll-view class="dish-list" scroll-y="true" scroll-into-view="dish-group-{{selected}}">
+      <view id="dish-group-{{selected}}" class="group-title">{{selectedName}} <text class="group-heart">♡</text></view>
+      <view wx:for="{{visible}}" wx:key="id" class="dish-card">
+        <image class="dish-img" src="{{item.image}}" mode="aspectFill" data-id="{{item.id}}" bindtap="detail"/>
+        <view class="dish-info" data-id="{{item.id}}" bindtap="detail">
+          <view class="dish-name">{{item.name}}</view>
+          <view class="dish-desc">{{item.description}}</view>
+          <view class="dish-meta" wx:if="{{item.type==='dish'}}">{{item.minutes}} 分钟 · {{item.difficulty}} 星难度</view>
+          <view class="dish-meta" wx:else>女朋友专属 · 无限供应</view>
+          <view class="dish-bottom">
+            <view class="dish-price"><text class="price-bolt">⚡</text><text class="price-number">{{item.price}}</text></view>
+            <view class="small-add" data-id="{{item.id}}" catchtap="add" aria-role="button"><text class="add-heart">♥</text><text>点它</text></view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="sticky-actions"><view class="cart-bar" bindtap="goCart"><image class="checkout-art" src="/assets/images/checkout-art.jpg" mode="widthFix"/><view class="cart-badge">{{cartCount}}</view><view class="cart-info"><view class="cart-main"><text class="cart-number">{{cartCount}}</text><text>件商品</text><text class="cart-total">⚡ {{total}}</text></view><view class="cart-caption">有你在，一起吃什么都好吃～♥</view></view><view class="cart-checkout">去结算 ›</view></view></view>
 </view>

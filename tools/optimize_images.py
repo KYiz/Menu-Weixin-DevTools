@@ -19,6 +19,8 @@ def target_settings(path):
         return 750, 40
     if path.name == "kitchen-strip.jpg":
         return 750, 40
+    if path.name == "checkout-art.jpg":
+        return 891, 80
     if path.name == "shinchan-love.jpg":
         return 500, 55
     return 360, 50
@@ -38,6 +40,8 @@ def main():
         width, quality = target_settings(target)
         with Image.open(source) as opened:
             image = opened.convert("RGB")
+            if target.name == "checkout-art.jpg" and image.height > 200:
+                image = image.crop((0, 85, image.width, image.height - 20))
             if image.width > width:
                 image = image.resize(
                     (width, round(image.height * width / image.width)),
