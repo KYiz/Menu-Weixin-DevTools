@@ -22,9 +22,8 @@ function save(order) {
   });
 }
 
-function identity() {
-  return call('identity').then(result => result.openid);
-}
+function identityResult() { return call('identity'); }
+function identity() { return identityResult().then(result => result.openid); }
 
 function listWithIdentity() {
   return call('list');
@@ -46,4 +45,4 @@ function setStatus(key, status) {
   return call('setStatus', { key, status }).then(result => result.order);
 }
 
-module.exports = { save, identity, list, listWithIdentity, get, chefList, setStatus };
+module.exports = { save, identity, identityResult, list, listWithIdentity, get, chefList, setStatus };

@@ -37,7 +37,7 @@ function query(filter) {
 const cloud = {
   DYNAMIC_CURRENT_ENV: 'test',
   init() {},
-  database() { return { collection() { return collection; } }; },
+  database() { return { collection() { return collection; }, runTransaction(callback) { return callback({ collection() { return collection; } }); } }; },
   getWXContext() { return { OPENID: caller }; }
 };
 const source = fs.readFileSync(path.join(__dirname, '..', 'cloudfunctions/orders/index.js'), 'utf8');
@@ -47,10 +47,12 @@ const run = event => context.exports.main(event);
 
 (async () => {
   assert.strictEqual((await run({ action: 'identity' })).openid, caller);
+  assert.strictEqual((await run({ action: 'identity' })).isChef, false);
   const order = { id: 'SD2026101112345678', time: '2026-10-11 12:34', lines: [{ id: 'staple-1', name: '蛋炒饭', qty: 1, price: 15, type: 'dish' }], taste: '不辣', note: '少盐', total: 15, openid: CHEF, status: 'done' };
   const saved = await run({ action: 'create', order, role: 'chef', openid: CHEF });
   assert.strictEqual(saved.order.openid, caller);
   assert.strictEqual(saved.order.status, 'pending');
+  assert.strictEqual(saved.order.diningMode, 'delivery');
   assert.strictEqual(saved.order.note, order.note);
   assert.strictEqual((await run({ action: 'list' })).orders.length, 1);
   assert.strictEqual((await run({ action: 'chefList', role: 'chef', openid: CHEF })).code, 'CHEF_FORBIDDEN');
@@ -65,6 +67,7 @@ const run = event => context.exports.main(event);
   assert.strictEqual((await run({ action: 'get', id: order.id })).order, null);
 
   caller = CHEF;
+  assert.strictEqual((await run({ action: 'identity' })).isChef, true);
   assert.strictEqual((await run({ action: 'list' })).orders.length, 0, 'chef personal history must contain only chef orders');
   assert.strictEqual((await run({ action: 'get', id: order.id })).order, null);
   const inbox = await run({ action: 'chefList' });
@@ -73,14 +76,16 @@ const run = event => context.exports.main(event);
   assert.strictEqual(inbox.orders[0].key, `girlfriend-openid_${order.id}`);
   const key = inbox.orders[0].key;
   assert.strictEqual((await run({ action: 'setStatus', key, status: 'done' })).code, 'STATUS_CONFLICT');
-  for (const status of ['accepted', 'cooking', 'done']) {
+  for (const status of ['accepted', 'cooking', 'done', 'delivering', 'delivered']) {
     assert.strictEqual((await run({ action: 'setStatus', key, status })).status, status);
   }
-  assert.strictEqual((await run({ action: 'chefList' })).orders[0].status, 'done');
+  assert.strictEqual((await run({ action: 'setStatus', key, status: 'delivered' })).code, 'STATUS_CONFLICT', 'duplicate operations are rejected');
+  assert.strictEqual((await run({ action: 'setStatus', key, status: 'cooking' })).code, 'STATUS_CONFLICT', 'status cannot move backwards');
+  assert.strictEqual((await run({ action: 'chefList' })).orders[0].status, 'delivered');
   assert.strictEqual((await run({ action: 'create', order: { ...order, openid: 'forged' } })).order.status, 'pending', 'chef order uses a different owner key');
   assert.strictEqual((await run({ action: 'get', id: order.id })).order.status, 'pending');
   caller = 'girlfriend-openid';
-  assert.strictEqual((await run({ action: 'create', order })).order.status, 'done', 'retry must not reset chef status');
+  assert.strictEqual((await run({ action: 'create', order })).order.status, 'delivered', 'retry must not reset chef status');
   caller = 'another-experience-member';
   const second = { ...order, id: 'SD2026101112345699', note: '少辣' };
   assert.strictEqual((await run({ action: 'create', order: second })).order.openid, caller);
@@ -88,5 +93,14 @@ const run = event => context.exports.main(event);
   caller = 'girlfriend-openid';
   assert.strictEqual((await run({ action: 'list' })).orders.length, 1);
   assert.strictEqual((await run({ action: 'get', id: second.id })).order, null);
-  console.log('PASS: trusted chef OpenID, cross-device inbox, owner isolation, status transitions, forged role rejection, idempotent order creation');
+  const dine = { ...order, id: 'SD2026101112345700', diningMode: 'dine_in' };
+  assert.strictEqual((await run({ action: 'create', order: dine })).order.diningMode, 'dine_in');
+  caller = CHEF;
+  const dineKey = `girlfriend-openid_${dine.id}`;
+  for (const status of ['accepted', 'cooking', 'done']) assert.strictEqual((await run({ action: 'setStatus', key: dineKey, status })).status, status);
+  assert.strictEqual((await run({ action: 'setStatus', key: dineKey, status: 'delivering' })).code, 'STATUS_CONFLICT');
+  caller = 'girlfriend-openid';
+  assert.strictEqual((await run({ action: 'get', id: dine.id })).order.status, 'done');
+  assert.strictEqual((await run({ action: 'list' })).orders.length, 2);
+  console.log('PASS: trusted chef OpenID, owner isolation, delivery and dine-in state machines, and idempotent creation');
 })().catch(error => { console.error(error); process.exitCode = 1; });

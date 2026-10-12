@@ -119,6 +119,17 @@ const settle = () => new Promise(resolve => setTimeout(resolve, 0));
     await settle();
     assert.strictEqual(page.data.selectedOrder.status, to);
   }
+  for (const [from, to] of [['done', 'delivering'], ['delivering', 'delivered']]) {
+    assert.strictEqual(page.data.selectedOrder.status, from);
+    page.advanceStatus();
+    await settle();
+    await settle();
+    assert.strictEqual(page.data.selectedOrder.status, to);
+  }
   assert.strictEqual(page.data.selectedOrder.nextStatus, '');
-  console.log('PASS: chef orders expand in place, collapse, switch with stable scroll, and advance through all three actions');
+  listedOrders = () => [{ ...order, diningMode: 'dine_in', status: 'done' }];
+  await page.refreshOrders();
+  assert.strictEqual(page.data.orders[0].statusLabel, '可以开饭啦');
+  assert.strictEqual(page.data.orders[0].nextStatus, '');
+  console.log('PASS: chef orders expand in place, collapse, switch with stable scroll, and advance through all delivery actions');
 })().catch(error => { console.error(error); process.exitCode = 1; });

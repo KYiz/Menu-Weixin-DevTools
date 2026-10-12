@@ -64,7 +64,8 @@ function diagnose(onUpdate) {
       });
       return;
     }
-    finish({ status: 'success', stage: 'orders.identity 已完成', code: '0', message: '云函数调用成功', openid: result.openid });
+    const identityState = result.isChef === true ? '主厨身份已通过' : result.isChef === false ? '当前微信账号不是已配置的主厨' : '云函数未返回主厨身份，请重新部署 orders 云函数';
+    finish({ status: 'success', stage: 'orders.identity 已完成', code: '0', message: identityState, openid: result.openid });
   };
 
   if (!state.cloudReady) {

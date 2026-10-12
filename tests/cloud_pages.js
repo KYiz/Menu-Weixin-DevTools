@@ -43,12 +43,14 @@ const settle = () => new Promise(resolve => setTimeout(resolve, 0));
   listFails = true;
   page.onShow();
   await settle();
-  assert.deepStrictEqual(page.data.orders.map(order => order.id), [localOrder.id]);
+  assert.deepStrictEqual(page.data.orders.map(order => order.id), [localOrder.id, remoteOrder.id]);
+  assert.strictEqual(page.data.stale, true);
+  assert.ok(page.data.loadMessage.includes('暂时无法更新'));
 
   identityFails = true;
   page.onShow();
   await settle();
-  assert.deepStrictEqual(page.data.orders, [], 'unverified user must not see local history');
-  assert.ok(page.data.loadMessage.includes('无法确认当前微信账号'));
+  assert.deepStrictEqual(page.data.orders.map(order => order.id), [localOrder.id, remoteOrder.id], 'same verified session keeps its last confirmed state offline');
+  assert.ok(page.data.loadMessage.includes('暂时无法更新'));
   console.log('PASS: cloud owner isolation, OpenID-scoped local fallback, and no private history without identity');
 })().catch(error => { console.error(error); process.exitCode = 1; });

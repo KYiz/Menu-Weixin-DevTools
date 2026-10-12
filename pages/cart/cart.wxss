@@ -2,4 +2,5 @@
 
 .line image,.line-actions{flex:none}
 .line-name{overflow-wrap:break-word}
+.dining-modes{gap:28rpx;padding:8rpx 0 4rpx}
 

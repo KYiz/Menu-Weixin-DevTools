@@ -57,6 +57,7 @@ async function settle() { await Promise.resolve(); await Promise.resolve(); }
   await settle();
   assert.strictEqual(page.data.status, 'success');
   assert.strictEqual(page.data.openid, 'real-user-openid');
+  assert.ok(page.data.message.includes('重新部署 orders 云函数'));
   assert.strictEqual(page.data.envId, state.cloudEnvId);
   page.copyOpenid();
   assert.strictEqual(last, 'real-user-openid');
@@ -74,6 +75,16 @@ async function settle() { await Promise.resolve(); await Promise.resolve(); }
   scheduled();
   assert.ok(page.data.copyFeedback.includes('没有收到剪贴板接口反馈'));
   clipboardNoCallback = false;
+
+  callFunction = () => Promise.resolve({ result: { ok: true, openid: 'real-user-openid', isChef: true } });
+  page = start();
+  await settle();
+  assert.ok(page.data.message.includes('主厨身份已通过'));
+
+  callFunction = () => Promise.resolve({ result: { ok: true, openid: 'real-user-openid', isChef: false } });
+  page = start();
+  await settle();
+  assert.ok(page.data.message.includes('不是已配置的主厨'));
 
   callFunction = options => options.fail({ errCode: -501005, errMsg: 'function not exists' });
   page = start();

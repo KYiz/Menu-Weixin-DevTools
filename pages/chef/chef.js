@@ -2,11 +2,13 @@ const { categories, items } = require('../../data/catalog');
 const store = require('../../utils/store');
 const cloudOrders = require('../../utils/cloudOrders');
 const cloudError = require('../../utils/cloudError');
-const labels = { pending: ['待接单', 'accepted', '接单'], accepted: ['已接单', 'cooking', '开始制作'], cooking: ['制作中', 'done', '标记完成'], done: ['已完成', '', ''] };
+const orderStatus = require('../../utils/orderStatus');
+const labels = { pending: ['accepted', '接单'], accepted: ['cooking', '开始制作'], cooking: ['done', '制作完成'], done: ['delivering', '开始配送'], delivering: ['delivered', '确认送达'], delivered: ['', ''] };
 
 function displayOrder(order) {
-  const [statusLabel, nextStatus, actionLabel] = labels[order.status] || labels.pending;
-  return { ...order, statusLabel, nextStatus, actionLabel, summary: order.lines.map(line => `${line.name} × ${line.qty}`).join('、') };
+  let [nextStatus, actionLabel] = labels[order.status] || labels.pending;
+  if (orderStatus.mode(order) === 'dine_in' && order.status === 'done') { nextStatus = ''; actionLabel = ''; }
+  return { ...order, statusLabel: orderStatus.label(order), diningModeLabel: orderStatus.modeLabel(order), nextStatus, actionLabel, summary: order.lines.map(line => `${line.name} × ${line.qty}`).join('、') };
 }
 
 Page({

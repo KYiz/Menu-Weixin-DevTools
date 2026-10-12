@@ -16,18 +16,19 @@
       <view class="cream-card" bindtap="refreshOrders"><text>🧾</text><view>云端订单 · 刷新</view><text class="shortcut-count">{{loading ? '读取中' : orderCount + ' 份'}}</text></view>
       <view class="cream-card" bindtap="favorites"><text>💛</text><view>本机收藏</view><text class="shortcut-count">{{favCount}} 项</text></view>
     </view>
-    <view class="local-note">订单从云端读取。点开订单查看备注和菜品，再按顺序接单、制作、完成。</view>
+    <view class="local-note">订单从云端读取。点开订单查看备注和菜品，再按顺序处理。</view>
     <view class="section-title list-title">🧾 接单管理</view>
     <view wx:if="{{!orders.length}}" class="chef-empty">{{loading ? '正在读取订单…' : '暂时没有新订单'}}</view>
     <view wx:for="{{orders}}" wx:key="key" class="chef-order-group" id="chef-order-{{index}}">
       <view class="chef-order cream-card" data-key="{{item.key}}" data-index="{{index}}" bindtap="chooseOrder">
         <view class="chef-order-head"><text>{{item.time}}</text><text class="status">{{item.statusLabel}}</text></view>
         <view class="chef-order-summary">{{item.summary}}</view>
-        <view class="muted">{{item.id}} · ⚡ {{item.total}}</view>
+        <view class="muted">{{item.diningModeLabel}} · {{item.id}} · ⚡ {{item.total}}</view>
       </view>
       <view wx:if="{{selectedKey === item.key}}" class="chef-detail cream-card">
         <view class="section-title">订单详情</view>
         <view class="muted">{{item.time}} · {{item.id}}</view>
+        <view class="chef-note">用餐方式：{{item.diningModeLabel}}</view>
         <view wx:for="{{item.lines}}" wx:for-item="line" wx:key="id" class="chef-line">
           <text>{{line.name}} × {{line.qty}}</text><text>⚡ {{line.price * line.qty}}</text>
         </view>

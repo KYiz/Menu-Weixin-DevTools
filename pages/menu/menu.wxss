@@ -30,6 +30,8 @@
 .shop-name{color:#4f2c30}
 .delivery{color:#e58b19}
 .chef-entry{background:#fff1d9;color:#a56a42}
+.shop-brand{display:flex;flex:1;min-width:0;align-items:center;flex-wrap:wrap;gap:4rpx 0}
+.shop-brand .delivery{white-space:nowrap}
 .notice{color:#a58c8b}
 .top-links{color:#987b80;border-bottom-color:#f6e8e6}
 .top-links .current{color:#55343a}
