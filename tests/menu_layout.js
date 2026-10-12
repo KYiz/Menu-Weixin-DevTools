@@ -33,8 +33,9 @@ assert.ok(wxss.includes('.menu-page{display:flex;flex-direction:column;box-sizin
 assert.ok(wxss.includes('.menu-layout{display:flex;flex:1 0 auto;'));
 assert.ok(wxss.includes('.cat{min-height:98rpx;'));
 assert.ok(wxss.includes('padding-bottom:calc(171rpx + env(safe-area-inset-bottom))'));
-assert.ok(wxml.includes('class="top-banner" src="/assets/images/shinchan-kitchen.jpg" mode="widthFix"'));
+assert.ok(wxml.includes('class="top-banner" src="/assets/images/shinchan-kitchen.jpg" mode="aspectFill"'));
 assert.ok(wxml.includes('class="kitchen-strip" src="/assets/images/kitchen-strip.jpg" mode="widthFix"'));
-assert.ok(wxss.includes('.top-banner,.kitchen-strip{height:auto}'));
+assert.ok(wxss.includes('.top-banner{width:100%;height:245rpx'));
+assert.ok(wxss.includes('.kitchen-strip{height:auto}'));
 assert.ok(!/@media[\s\S]*?\.top-banner\{height:\d+rpx\}/.test(wxss));
 console.log('PASS: menu columns move with the page and footer space matches its safe-area height');

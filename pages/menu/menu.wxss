@@ -80,5 +80,6 @@
   .special-feature image{height:120rpx}
 }
 
-/* Preserve the full illustrations at every screen height. widthFix derives height from the image ratio. */
-.top-banner,.kitchen-strip{height:auto}
+/* Match the reference: a shallow edge-to-edge cover and a full second illustration. */
+.top-banner{width:100%;height:245rpx;background:#fff4dc}
+.kitchen-strip{height:auto}
