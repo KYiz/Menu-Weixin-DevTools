@@ -72,14 +72,13 @@
 
 /* Keep the menu usable below the native navigation bar on shorter phones. */
 @media (max-height:850px){
-  .top-banner{height:160rpx}
-  .kitchen-strip{height:190rpx}
   .special-feature{min-height:140rpx;margin-bottom:12rpx}
   .special-feature image{height:140rpx}
 }
 @media (max-height:600px){
-  .top-banner{height:130rpx}
-  .kitchen-strip{height:150rpx}
   .special-feature{min-height:120rpx;margin-bottom:8rpx}
   .special-feature image{height:120rpx}
 }
+
+/* Preserve the full illustrations at every screen height. widthFix derives height from the image ratio. */
+.top-banner,.kitchen-strip{height:auto}

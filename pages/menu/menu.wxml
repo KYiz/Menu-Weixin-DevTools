@@ -1,11 +1,11 @@
 <view class="page menu-page">
-  <image class="top-banner" src="/assets/images/shinchan-kitchen.jpg" mode="aspectFill"/>
+  <image class="top-banner" src="/assets/images/shinchan-kitchen.jpg" mode="widthFix"/>
   <view class="shop-info">
     <view class="shop-main"><view class="shop-brand" catchlongpress="diagnoseCloud"><text class="shop-name">小霞饱饱食堂</text><text class="delivery">⚡ 闪电专送</text></view><view wx:if="{{showChefEntry}}" class="chef-entry" bindtap="goChef">👨‍🍳 主厨入口 ›</view></view>
     <view class="notice">🔊 fxx专属食堂 闪电目标喂饱宝宝</view>
     <view class="top-links"><view class="current">菜单 <text>({{menuCount}})</text></view><view bindtap="goRandom">今天吃什么</view><view bindtap="goFavorites">♡ 收藏</view><view bindtap="goOrders">订单</view></view>
   </view>
-  <image class="kitchen-strip" src="/assets/images/kitchen-strip.jpg" mode="aspectFill"/>
+  <image class="kitchen-strip" src="/assets/images/kitchen-strip.jpg" mode="widthFix"/>
   <view class="special-feature" bindtap="detail" data-id="special-love"><image src="/assets/images/shinchan-love.jpg" mode="aspectFill"/><view class="special-copy"><view class="special-kicker">💗 女朋友专属 · 无限供应</view><view class="special-title">可亲可抱可爱爱</view><view class="special-desc">主厨限定，甜蜜不限量</view><view class="special-cta">立即召唤闪电 ⚡</view></view></view>
   <view class="menu-layout">
     <view class="cat-list"><view wx:for="{{categories}}" wx:key="id" class="cat {{selected===item.id?'active':''}}" data-id="{{item.id}}" bindtap="tapCategory"><text class="cat-emoji">{{item.emoji}}</text><text>{{item.short}}</text></view></view>
