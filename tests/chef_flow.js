@@ -2,6 +2,8 @@ const assert = require('assert');
 const fs = require('fs');
 let caller = 'guest';
 let status = 'pending';
+let chefListCalls = 0;
+let statusCalls = 0;
 let page;
 const order = { key: 'girlfriend_SD2026101112345678', id: 'SD2026101112345678', time: '2026-10-11 12:34', status, lines: [{ id: 'chicken-1', name: '可乐鸡翅', qty: 2, price: 15, type: 'dish' }], taste: '微辣', note: '不要香菜', total: 30 };
 const otherOrders = [
@@ -16,8 +18,8 @@ global.wx = {
   cloud: { callFunction({ data }) {
     if (caller === 'old-function') return Promise.reject(new Error('不支持的订单操作\nprivate stack'));
     if (caller !== 'chef') return Promise.resolve({ result: { ok: false, code: 'CHEF_FORBIDDEN', error: '只有主厨可以查看接单管理' } });
-    if (data.action === 'chefList') return Promise.resolve({ result: { ok: true, orders: listedOrders() } });
-    if (data.action === 'setStatus') { status = data.status; return Promise.resolve({ result: { ok: true, order: { ...order, status } } }); }
+    if (data.action === 'chefList') { chefListCalls += 1; return Promise.resolve({ result: { ok: true, orders: listedOrders() } }); }
+    if (data.action === 'setStatus') { statusCalls += 1; status = data.status; return Promise.resolve({ result: { ok: true, order: { ...order, status } } }); }
     throw new Error('unexpected action');
   } },
   navigateTo() {}, navigateBack() {}, showToast() {},
@@ -112,9 +114,11 @@ const settle = () => new Promise(resolve => setTimeout(resolve, 0));
   const wxml = fs.readFileSync(require.resolve('../pages/chef/chef.wxml'), 'utf8');
   assert.match(wxml, /wx:for="{{orders}}"[^>]*class="chef-order-group"[\s\S]*class="chef-order cream-card"[\s\S]*wx:if="{{selectedKey === item.key}}" class="chef-detail cream-card"/);
   assert.ok(!wxml.includes('selectedOrder.lines'));
+  const listsBeforeActions = chefListCalls;
   for (const [from, to] of [['pending', 'accepted'], ['accepted', 'cooking'], ['cooking', 'done']]) {
     assert.strictEqual(page.data.selectedOrder.status, from);
     page.advanceStatus();
+    assert.strictEqual(page.data.authorized, true, 'status action keeps the chef page open');
     await settle();
     await settle();
     assert.strictEqual(page.data.selectedOrder.status, to);
@@ -126,6 +130,8 @@ const settle = () => new Promise(resolve => setTimeout(resolve, 0));
     await settle();
     assert.strictEqual(page.data.selectedOrder.status, to);
   }
+  assert.strictEqual(statusCalls, 5);
+  assert.strictEqual(chefListCalls, listsBeforeActions, 'status actions do not reload or re-gate the chef page');
   assert.strictEqual(page.data.selectedOrder.nextStatus, '');
   listedOrders = () => [{ ...order, diningMode: 'dine_in', status: 'done' }];
   await page.refreshOrders();

@@ -14,12 +14,13 @@ function displayOrder(order) {
 Page({
   data: { categories, selected: 'chicken', visible: [], authorized: false, loading: true, accessError: '', orders: [], selectedKey: '', selectedOrder: null, orderCount: 0, favCount: 0, updating: false },
   onLoad() { this.select('chicken'); },
-  onShow() { this.setData({ favCount: store.favorites().length }); this.refreshOrders(); },
-  refreshOrders() {
+  onShow() { this.setData({ favCount: store.favorites().length }); this.refreshOrders({ preserveView: this.data.authorized }); },
+  refreshOrders({ preserveView = false } = {}) {
     const serial = this.refreshSerial = (this.refreshSerial || 0) + 1;
     this.selectionSerial = (this.selectionSerial || 0) + 1;
     this.selectionTargetKey = this.selectedKey || '';
-    this.setData({ authorized: false, loading: true, accessError: '', orders: [], selectedKey: '', selectedOrder: null });
+    if (preserveView && this.data.authorized) this.setData({ loading: true, accessError: '' });
+    else this.setData({ authorized: false, loading: true, accessError: '', orders: [], selectedKey: '', selectedOrder: null });
     return cloudOrders.chefList().then(orders => {
       if (serial !== this.refreshSerial) return;
       const shown = orders.map(displayOrder);
@@ -30,7 +31,11 @@ Page({
     }).catch(error => {
       if (serial !== this.refreshSerial) return;
       cloudError.log('主厨订单读取失败', error);
-      this.setData({ authorized: false, loading: false, orderCount: 0, accessError: cloudError.describe(error) });
+      if (preserveView && this.data.authorized && error.code !== 'CHEF_FORBIDDEN') {
+        this.setData({ loading: false });
+      } else {
+        this.setData({ authorized: false, loading: false, orders: [], selectedKey: '', selectedOrder: null, orderCount: 0, accessError: cloudError.describe(error) });
+      }
     });
   },
   chooseOrder(e) {
@@ -67,14 +72,16 @@ Page({
     const order = this.data.selectedOrder;
     if (!this.data.authorized || this.data.updating || !order || !order.nextStatus) return;
     this.setData({ updating: true });
-    cloudOrders.setStatus(order.key, order.nextStatus).then(() => {
-      this.setData({ updating: false });
-      return this.refreshOrders();
+    cloudOrders.setStatus(order.key, order.nextStatus).then(updated => {
+      const shown = displayOrder({ ...order, ...updated, key: order.key });
+      const orders = this.data.orders.map(item => item.key === order.key ? shown : item);
+      const selectedOrder = this.data.selectedKey === order.key ? shown : this.data.selectedOrder;
+      this.setData({ updating: false, orders, selectedOrder });
     }).catch(error => {
       this.setData({ updating: false });
       cloudError.log('主厨订单状态更新失败', error);
       wx.showToast({ title: cloudError.describe(error), icon: 'none' });
-      this.refreshOrders();
+      this.refreshOrders({ preserveView: true });
     });
   },
   select(id) { this.setData({ selected: id, visible: items.filter(item => item.categoryId === id) }); },
