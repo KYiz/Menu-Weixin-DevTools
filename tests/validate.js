@@ -30,5 +30,5 @@ assert.ok(fs.existsSync(path.join(__dirname,'..','assets/images/shinchan-kitchen
 const menuWxml=fs.readFileSync(path.join(__dirname,'..','pages/menu/menu.wxml'),'utf8');
 assert.ok(fs.existsSync(path.join(__dirname,'..','assets/images/checkout-art.jpg')));
 assert.ok(menuWxml.includes('/assets/images/checkout-art.jpg')&&menuWxml.includes('{{cartCount}}')&&menuWxml.includes('{{total}}'));
-assert.ok(menuWxml.includes('<view class="cat-list">')&&menuWxml.includes('<view class="dish-list">')&&!menuWxml.includes('<scroll-view'),'menu columns must scroll with the page');
+assert.ok(menuWxml.includes('<view class="cat-list">')&&menuWxml.includes('<view class="dish-list">')&&!menuWxml.includes('class="dish-list" scroll-y='),'menu columns must scroll with the page');
 console.log('PASS: 9 categories, 48 items, 47 complete recipes and matching times, local images, scaling, favorites, cart, 0-price and mixed orders, page routes and handlers');

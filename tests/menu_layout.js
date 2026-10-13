@@ -27,7 +27,8 @@ assert.ok(wxml.includes('class="small-add" data-id="{{item.id}}" catchtap="add" 
 assert.ok(!wxml.includes('<button class="small-add"'));
 assert.ok(wxml.includes('<view class="cat-list">'));
 assert.ok(wxml.includes('<view class="dish-list">'));
-assert.ok(!wxml.includes('<scroll-view'));
+assert.ok(wxml.includes('<scroll-view class="cart-sheet-list" scroll-y="true"'));
+assert.ok(!wxml.includes('class="dish-list" scroll-y='));
 assert.ok(!wxml.includes('footerStyle'));
 assert.ok(wxss.includes('.menu-page{display:flex;flex-direction:column;box-sizing:border-box;min-height:100vh;overflow:visible;'));
 assert.ok(wxss.includes('.menu-layout{display:flex;flex:1 0 auto;'));

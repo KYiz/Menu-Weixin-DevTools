@@ -3,6 +3,7 @@ const cloudOrders = require('../../utils/cloudOrders');
 const cloudError = require('../../utils/cloudError');
 const orderStatus = require('../../utils/orderStatus');
 const { getItem } = require('../../data/catalog');
+const cartNavigation = require('../../utils/cartNavigation');
 
 Page({
   data: { order: null, text: '', food: [], service: [], steps: [], syncState: '', syncMessage: '', stale: false, refreshing: false },
@@ -84,7 +85,7 @@ Page({
   reorder() {
     const valid = this.data.order.lines.filter(x => getItem(x.id));
     valid.forEach(x => store.add(x.id, x.qty));
-    wx.navigateTo({ url: '/pages/cart/cart' });
+    cartNavigation.openCart();
   },
   onShareAppMessage() {
     const o = this.data.order;

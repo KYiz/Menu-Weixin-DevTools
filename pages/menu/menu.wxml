@@ -1,3 +1,4 @@
+<page-meta page-style="{{cartOpen ? 'overflow: hidden;' : ''}}"/>
 <view class="page menu-page">
   <view class="top-banner-frame"><image class="top-banner" src="/assets/images/shinchan-kitchen.jpg" mode="widthFix"/></view>
   <view class="shop-info">
@@ -26,5 +27,20 @@
       </view>
     </view>
   </view>
-  <view class="sticky-actions"><view class="cart-bar" bindtap="goCart"><image class="checkout-art" src="/assets/images/checkout-art.jpg" mode="widthFix"/><view class="cart-badge">{{cartCount}}</view><view class="cart-info"><view class="cart-main"><text class="cart-number">{{cartCount}}</text><text>件商品</text><text class="cart-total">⚡ {{total}}</text></view><view class="cart-caption">有你在，一起吃什么都好吃～♥</view></view><view class="cart-checkout">去结算 ›</view></view></view>
+  <view class="sticky-actions"><view class="cart-bar"><image class="checkout-art" src="/assets/images/checkout-art.jpg" mode="widthFix"/><view class="cart-art-hit" bindtap="goCart" aria-role="button" aria-label="查看购物车"/><view class="cart-badge" bindtap="goCart" aria-role="button" aria-label="查看购物车">{{cartCount}}</view><view class="cart-info" bindtap="goCart" aria-role="button" aria-label="查看购物车"><view class="cart-main"><text class="cart-number">{{cartCount}}</text><text>件商品</text><text class="cart-total">⚡ {{total}}</text></view><view class="cart-caption">有你在，一起吃什么都好吃～♥</view></view><view class="cart-checkout {{cartCount===0?'cart-checkout-disabled':''}}" bindtap="goCheckout" aria-role="button">去结算 ›</view></view></view>
+</view>
+<view class="cart-overlay {{cartOpen?'cart-overlay-open':''}}">
+  <view class="cart-mask" catchtap="closeCart" catchtouchmove="blockTouch"/>
+  <view class="cart-sheet {{cartLines.length>3?'cart-sheet-expanded':''}}" bindtouchstart="cartTouchStart" bindtouchend="cartTouchEnd">
+    <view class="cart-sheet-head"><view class="cart-sheet-handle"/><view class="cart-sheet-title">🛒 闪电小餐车 <text>💗</text></view><view class="cart-sheet-close" catchtap="closeCart" aria-role="button" aria-label="关闭购物车">×</view></view>
+    <scroll-view class="cart-sheet-list" scroll-y="true" scroll-top="{{cartScrollTop}}" bindscroll="cartListScroll">
+      <view wx:if="{{cartLines.length===0}}" class="cart-sheet-empty"><text class="empty-icon">🍽️</text><view>餐车还空空的，先去挑点好吃的吧</view></view>
+      <view wx:for="{{cartLines}}" wx:key="id" class="cart-sheet-line">
+        <image src="{{item.item.image}}" mode="aspectFill"/>
+        <view class="cart-sheet-item"><view class="cart-sheet-name">{{item.item.name}}</view><view class="cart-sheet-type">{{item.item.type==='special_service'?'💗 甜蜜专属':'⚡ 主厨手作'}}</view><view class="cart-sheet-price">⚡ {{item.subtotal}}</view></view>
+        <view class="cart-sheet-actions"><view class="cart-sheet-remove" data-id="{{item.id}}" catchtap="cartRemove">删除</view><view class="cart-sheet-counter"><text data-id="{{item.id}}" catchtap="cartDecrease">−</text><text>{{item.qty}}</text><text data-id="{{item.id}}" catchtap="cartIncrease">＋</text></view></view>
+      </view>
+    </scroll-view>
+    <view class="cart-sheet-foot"><view class="cart-sheet-sum"><text>合计 ⚡ {{total}}</text><text>共 {{cartCount}} 份</text></view><button class="cart-sheet-submit" bindtap="goCheckout" disabled="{{cartCount===0}}">确认下单 →</button></view>
+  </view>
 </view>

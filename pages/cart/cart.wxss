@@ -4,3 +4,11 @@
 .line-name{overflow-wrap:break-word}
 .dining-modes{gap:28rpx;padding:8rpx 0 4rpx}
 
+.cart-page{background:#fff7f3;color:#63343e}
+.top .section-title,.items .section-title,.prefs .section-title{color:#653341}
+.items,.prefs{background:#fffdfb;border:2rpx solid #fbe0e6}
+.line{border-bottom-color:#f1dce2}
+.line-price,.sum{color:#ef5d7e}
+.line-qty{flex:none;padding:7rpx 12rpx;border-radius:99rpx;background:#ffe9ef;color:#c75c7a;font-size:23rpx;font-weight:800}
+.checkout .btn{background:linear-gradient(180deg,#ff9caf,#f4587d);color:#fff}
+
