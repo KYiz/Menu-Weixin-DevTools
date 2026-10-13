@@ -1,1 +1,21 @@
-<view class="page random-page"><view class="random-top">🎲<view>今天吃什么？</view><text>让闪电帮你抽一道！</text></view><view wx:if="{{picked}}" class="draw-card cream-card"><image src="{{picked.image}}" mode="aspectFill"/><view class="pill">第 {{rolls}} 次心动推荐</view><view class="picked-name">{{picked.name}}</view><view class="muted">{{picked.description}}</view><view class="picked-meta">⏱ {{picked.minutes}} 分钟　⭐ {{picked.difficulty}} 星难度</view><view class="random-actions"><button class="btn btn-light" bindtap="draw">再抽一次</button><button class="btn" bindtap="add">点这道 +</button></view><view class="open" bindtap="open">查看菜品详情 →</view></view><view wx:else class="empty">今天暂时没有可供应的菜品</view><view class="foot">只从当前供应的普通菜品里抽取 💛</view></view>
+<view class="page random-page">
+  <view class="random-top">
+    <view class="random-icon">🎲</view>
+    <view class="random-title">今天吃什么？</view>
+    <text>让闪电帮你抽一道喜欢的菜 ❤️</text>
+  </view>
+  <view wx:if="{{picked}}" class="draw-card cream-card">
+    <image src="{{picked.image}}" mode="aspectFill"/>
+    <view class="pill">💗 第 {{rolls}} 次心动推荐</view>
+    <view class="picked-name">{{picked.name}}</view>
+    <view class="picked-desc">{{picked.description}}</view>
+    <view class="picked-meta">⏱ {{picked.minutes}} 分钟　⭐ {{picked.difficulty}} 星难度</view>
+    <view class="random-actions">
+      <button class="btn btn-light" bindtap="draw">再抽一次</button>
+      <button class="btn random-add" bindtap="add">点这道 ♥</button>
+    </view>
+    <view class="open" bindtap="open">查看菜品详情 →</view>
+  </view>
+  <view wx:else class="empty">今天暂时没有可供应的菜品</view>
+  <view class="foot">只从当前供应的普通菜品里抽取 💗</view>
+</view>

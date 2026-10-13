@@ -1,1 +1,14 @@
-<view class="page history"><view class="section-title">🧾 闪电订单簿｜</view><view class="muted subtitle">进入页面自动同步云端订单状态。</view><button class="btn btn-light history-refresh" bindtap="refreshStatus" disabled="{{refreshing}}">{{refreshing?'刷新中…':'刷新状态'}}</button><view wx:if="{{loadMessage}}" class="history-message">{{loadMessage}}</view><view wx:if="{{orders.length===0}}" class="empty"><text class="empty-icon">🧾</text>{{loadMessage || '还没有订单，第一份心意等你点！'}}</view><view wx:for="{{orders}}" wx:key="id" class="order-card cream-card" data-id="{{item.id}}" bindtap="open"><view class="order-head"><text>{{item.time}}</text><text>{{item.statusLabel}} →</text></view><view class="order-summary">{{item.summary}}</view><view class="order-foot"><text>{{item.diningModeLabel}} · {{item.lines.length}} 种心意</text><text>⚡ {{item.total}}</text></view></view></view>
+<view class="page history">
+  <view class="history-hero">
+    <view class="section-title">🧾 闪电订单簿</view>
+    <view class="subtitle">每一份心意，都能看到最新进度 💗</view>
+  </view>
+  <button class="btn history-refresh" bindtap="refreshStatus" disabled="{{refreshing}}">{{refreshing?'刷新中…':'刷新状态 ↻'}}</button>
+  <view wx:if="{{loadMessage}}" class="history-message">{{loadMessage}}</view>
+  <view wx:if="{{orders.length===0}}" class="empty history-empty"><text class="empty-icon">🧾</text>{{loadMessage || '还没有订单，第一份心意等你点！'}}</view>
+  <view wx:for="{{orders}}" wx:key="id" class="order-card cream-card" data-id="{{item.id}}" bindtap="open">
+    <view class="order-head"><text>{{item.time}}</text><text class="order-status">{{item.statusLabel}} →</text></view>
+    <view class="order-summary">{{item.summary}}</view>
+    <view class="order-foot"><text class="order-mode">{{item.diningModeLabel}}</text><text>{{item.lines.length}} 种心意</text><text class="order-total">⚡ {{item.total}}</text></view>
+  </view>
+</view>

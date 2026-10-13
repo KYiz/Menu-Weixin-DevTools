@@ -1,1 +1,16 @@
-<view class="page fav-page"><view class="section-title">💛 心动收藏夹</view><view class="muted subtitle">喜欢的，都给你留着</view><view wx:if="{{items.length===0}}" class="empty"><text class="empty-icon">💛</text>还没有收藏，去菜单里点亮小爱心吧</view><view wx:for="{{items}}" wx:key="id" class="fav-card cream-card"><image src="{{item.image}}" mode="aspectFill" data-id="{{item.id}}" bindtap="open"/><view class="fav-main" data-id="{{item.id}}" bindtap="open"><view class="fav-name">{{item.name}}</view><view class="muted">{{item.type==='special_service'?'情侣专属':'主厨手作'}}</view><view class="price">⚡ {{item.price}}</view></view><button class="btn" data-id="{{item.id}}" catchtap="add">+</button></view></view>
+<view class="page fav-page">
+  <view class="fav-hero">
+    <view class="section-title">💗 心动收藏夹</view>
+    <view class="fav-subtitle">喜欢的，都给你留着</view>
+  </view>
+  <view wx:if="{{items.length===0}}" class="empty fav-empty"><text class="empty-icon">💗</text>还没有收藏，去菜单里点亮小爱心吧</view>
+  <view wx:for="{{items}}" wx:key="id" class="fav-card cream-card">
+    <image src="{{item.image}}" mode="aspectFill" data-id="{{item.id}}" bindtap="open"/>
+    <view class="fav-main" data-id="{{item.id}}" bindtap="open">
+      <view class="fav-name">{{item.name}}</view>
+      <view class="fav-type">{{item.type==='special_service'?'💗 情侣专属':'🍽 主厨手作'}}</view>
+      <view class="price">⚡ {{item.price}}</view>
+    </view>
+    <button class="btn fav-add" data-id="{{item.id}}" catchtap="add">＋</button>
+  </view>
+</view>

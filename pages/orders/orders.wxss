@@ -1,2 +1,15 @@
-.history{padding:28rpx 24rpx}.subtitle{font-size:22rpx;margin:7rpx 0 25rpx}.order-card{padding:24rpx;margin-bottom:18rpx}.order-head,.order-foot{display:flex;justify-content:space-between;color:#ac9b8b;font-size:21rpx}.order-head text:last-child{color:#e28b46}.order-summary{font-weight:800;line-height:1.5;margin:20rpx 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.order-foot{border-top:2rpx dashed #f3e9de;padding-top:15rpx}.order-foot text:last-child{color:#e77d3b;font-weight:800}
-.history-refresh{margin:0 0 18rpx;width:100%}.history-message{padding:16rpx;margin-bottom:16rpx;border-radius:14rpx;background:#fff1f4;color:#a65a70;font-size:22rpx}
+.history{padding:24rpx 24rpx calc(70rpx + env(safe-area-inset-bottom));background:#fff7f3;color:#63343e}
+.history-hero{margin-bottom:17rpx;padding:27rpx 25rpx;border:2rpx solid #ffd6df;border-radius:24rpx;background:linear-gradient(135deg,#fff1f4,#ffe5ea)}
+.history-hero .section-title{color:#653341;font-size:34rpx;font-weight:900}
+.subtitle{margin-top:8rpx;color:#a87583;font-size:22rpx}
+.history-refresh{width:100%;margin:0 0 18rpx;border:2rpx solid #ffb2c3;border-radius:99rpx;background:linear-gradient(180deg,#ff9caf,#f4587d);color:#fff;font-size:24rpx;font-weight:800}
+.history-refresh[disabled]{opacity:.65}
+.history-message{padding:17rpx 20rpx;margin-bottom:17rpx;border:2rpx solid #f7d3dc;border-radius:16rpx;background:#fff3f6;color:#a35b70;font-size:22rpx;line-height:1.5}
+.history-empty{border:2rpx dashed #f5cad4;border-radius:22rpx;background:#fffdfb;color:#aa7d8b}
+.order-card{padding:22rpx;margin-bottom:16rpx;border:2rpx solid #fbe0e6;border-radius:22rpx;background:#fffdfb;box-shadow:0 8rpx 24rpx rgba(151,75,88,.07)}
+.order-head,.order-foot{display:flex;align-items:center;justify-content:space-between;gap:10rpx;color:#aa8790;font-size:21rpx}
+.order-status{flex:none;padding:8rpx 14rpx;border-radius:99rpx;background:#ffe9ef;color:#d05e7d;font-weight:800}
+.order-summary{margin:19rpx 0;color:#65343f;font-size:27rpx;font-weight:800;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.order-foot{flex-wrap:wrap;justify-content:flex-start;padding-top:15rpx;border-top:2rpx dashed #f3dfe4}
+.order-mode{padding:5rpx 11rpx;border-radius:99rpx;background:#fff1e8;color:#b07763;font-weight:800}
+.order-total{margin-left:auto;color:#ef5d7e;font-size:23rpx;font-weight:900}

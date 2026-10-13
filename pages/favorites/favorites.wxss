@@ -1,1 +1,12 @@
-.fav-page{padding:28rpx 24rpx}.subtitle{font-size:22rpx;margin:8rpx 0 24rpx}.fav-card{display:flex;align-items:center;gap:18rpx;padding:15rpx;margin-bottom:15rpx}.fav-card image{width:130rpx;height:130rpx;border-radius:18rpx}.fav-main{flex:1}.fav-name{font-size:27rpx;font-weight:800}.fav-main .muted{font-size:21rpx;margin:8rpx 0}.fav-card .btn{padding:12rpx 20rpx}
+.fav-page{padding:24rpx 24rpx calc(70rpx + env(safe-area-inset-bottom));background:#fff7f3;color:#63343e}
+.fav-hero{margin-bottom:20rpx;padding:27rpx 25rpx;border:2rpx solid #ffd6df;border-radius:24rpx;background:linear-gradient(135deg,#fff1f4,#ffe5ea)}
+.fav-hero .section-title{color:#653341;font-size:34rpx;font-weight:900}
+.fav-subtitle{margin-top:8rpx;color:#a87583;font-size:22rpx}
+.fav-card{display:flex;align-items:center;gap:17rpx;margin-bottom:15rpx;padding:15rpx;border:2rpx solid #fbe0e6;border-radius:22rpx;background:#fffdfb;box-shadow:0 8rpx 24rpx rgba(151,75,88,.07)}
+.fav-card image{flex:none;width:130rpx;height:130rpx;border-radius:16rpx;background:#fff1f3}
+.fav-main{flex:1;min-width:0}
+.fav-name{color:#65343f;font-size:27rpx;font-weight:900;overflow-wrap:break-word}
+.fav-type{margin:8rpx 0;color:#a5838d;font-size:20rpx}
+.fav-main .price{color:#ef5d7e;font-size:23rpx;font-weight:900}
+.fav-add{flex:none;width:58rpx;height:58rpx;display:flex;align-items:center;justify-content:center;margin:0;padding:0;border:3rpx solid #ffb2c3;border-radius:50%;background:#ffc5d1;color:#f34f78;font-size:26rpx;line-height:1}
+.fav-empty{border:2rpx dashed #f5cad4;border-radius:22rpx;background:#fffdfb;color:#aa7d8b}
