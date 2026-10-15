@@ -13,7 +13,7 @@
         <view class="subtitle">围裙系好，把每一份喜欢都认真做好 ❤️</view>
         <view class="back" bindtap="guest">← 返回点餐入口</view>
       </view>
-      <image class="chef-hero-art" src="/assets/images/shinchan-kitchen.jpg" mode="aspectFill"/>
+      <image class="chef-hero-art" src="/pages/chef/images/chef-welcome.jpg" mode="aspectFill"/>
     </view>
     <view class="chef-shortcuts">
       <view class="cream-card" bindtap="refreshOrders"><text>🧾</text><view>云端订单 · 刷新</view><text class="shortcut-count">{{loading ? '读取中' : orderCount + ' 份'}}</text></view>

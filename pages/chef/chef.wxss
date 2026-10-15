@@ -7,7 +7,7 @@
 .title{margin:14rpx 0 8rpx;color:#653341;font-size:38rpx;font-weight:900;line-height:1.25}
 .subtitle{color:#a87482;font-size:22rpx;line-height:1.45}
 .back{display:inline-block;margin-top:19rpx;padding:10rpx 17rpx;border:2rpx solid #f7d2da;border-radius:99rpx;background:#fffdfb;color:#a95570;font-size:21rpx;font-weight:800}
-.chef-hero-art{flex:none;width:168rpx;height:168rpx;border:5rpx solid #fffdfb;border-radius:22rpx;background:#fffaf5;box-shadow:0 6rpx 16rpx rgba(160,76,94,.12)}
+.chef-hero-art{flex:none;width:168rpx;height:126rpx;border:5rpx solid #fffdfb;border-radius:22rpx;background:#fffaf5;box-shadow:0 6rpx 16rpx rgba(160,76,94,.12)}
 
 .chef-shortcuts{display:flex;gap:16rpx;padding:20rpx 24rpx}
 .chef-shortcuts .cream-card{flex:1;min-width:0;padding:20rpx;color:#733d4a;font-size:24rpx;font-weight:800}
@@ -53,6 +53,6 @@
 .chef-gate button{margin:24rpx 0;border-radius:99rpx;background:#ffbdcb;color:#713d4c}
 
 @media (max-width:360px){
-  .chef-hero-art{width:126rpx;height:126rpx}
+  .chef-hero-art{width:126rpx;height:95rpx}
   .title{font-size:33rpx}
 }

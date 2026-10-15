@@ -32,7 +32,7 @@
 
 - `data/catalog.js`：分类、菜名、价格、供应状态、推荐状态和图片路径。特殊服务 ID 是 `special-love`，价格保持 0。新增普通菜品时，给它稳定的 ID，并在 `data/recipes.js` 添加同 ID 菜谱。
 - `data/recipes.js`：每份菜谱的两人份食材与调味料、预处理、步骤、火候、时间、注意事项和装盘建议。格式为 `名称|数字|单位`；页面可按 1 至 4 人份比例换算用量，烹饪时间不会按人数线性变化。
-- `assets/images/`：所有图片都在本地。47 道普通菜各有一张按菜品内容绘制的 JPG 图片，位于 `assets/images/dishes/<菜品ID>.jpg`。情侣服务图是 `shinchan-love.jpg`；首页顶部与菜单横幅分别是 `shinchan-kitchen.jpg` 和 `kitchen-strip.jpg`；固定结算栏插画是 `checkout-art.jpg`。这些素材由用户提供的图片本地压缩生成。
+- `assets/images/`：主包图片都在本地。47 道普通菜各有一张按菜品内容绘制的 JPG 图片，位于 `assets/images/dishes/<菜品ID>.jpg`。情侣服务图是 `shinchan-love.jpg`；首页顶部与菜单横幅分别是 `shinchan-kitchen.jpg` 和 `kitchen-strip.jpg`；固定结算栏插画是 `checkout-art.jpg`。主厨欢迎卡片 `pages/chef/images/chef-welcome.jpg` 位于主厨分包。这些素材由用户提供的图片本地压缩生成。
 - `preview/original-images/` 保存优化前的原图，不进入小程序代码包。更换图片后，可用安装了 Pillow 的 Python 运行 `python tools/optimize_images.py` 重新优化；若要以新图替换备份，请同时更换对应的 `preview/original-images/` 文件。
 - `preview/unused-category-images/` 保存目前界面未引用的八张分类插画，不进入代码包；分类列表使用表情符号，视觉布局不变。
 - `utils/store.js`：本地收藏、购物车、订单和订单文字格式。数据键使用 `lightning-v1-` 前缀；清除微信小程序缓存会删除本机记录。
