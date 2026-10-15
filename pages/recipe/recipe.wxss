@@ -1,1 +1,32 @@
-.recipe-page{padding-bottom:170rpx}.recipe-cover{width:100%;height:370rpx;background:#fff0d5}.recipe-head{padding:25rpx 27rpx}.kicker{color:#d98a42;font-size:22rpx;font-weight:800}.recipe-name{font-size:42rpx;font-weight:900;margin:12rpx 0}.recipe-head .muted{line-height:1.6;font-size:24rpx}.stats{display:flex;justify-content:space-between;background:#fff0d3;border-radius:20rpx;padding:18rpx 15rpx;margin-top:23rpx;text-align:center;color:#9a6133;font-weight:800;font-size:24rpx}.stats text{display:block;font-size:18rpx;color:#aa8e73;font-weight:400;margin-top:4rpx}.recipe-section{margin:0 24rpx 18rpx;padding:23rpx}.section-head{display:flex;align-items:center;justify-content:space-between;gap:6rpx}.section-head .section-title{font-size:30rpx}.people{display:flex;gap:5rpx}.people text{font-size:20rpx;color:#987b5e;background:#fff3d9;border-radius:99rpx;padding:7rpx 11rpx}.people .picked{background:#ffcd4a;color:#4c3523;font-weight:800}.scale-note{font-size:19rpx;color:#a99483;margin:15rpx 0}.subhead{font-weight:800;color:#a36e3e;margin:21rpx 0 7rpx;font-size:23rpx}.measure{display:flex;justify-content:space-between;padding:11rpx 0;border-bottom:1rpx dashed #eee4d7;font-size:24rpx}.measure text:last-child{font-weight:800}.body-text{line-height:1.7;color:#665449;font-size:24rpx;margin-top:12rpx}.step{display:flex;gap:16rpx;border-bottom:2rpx dashed #eee1d4;padding:20rpx 0}.step:last-child{border:0}.step-number{height:44rpx;width:44rpx;display:flex;align-items:center;justify-content:center;flex:none;border-radius:50%;background:#ffcd4a;color:#6c4a23;font-weight:900}.step-title{font-size:27rpx;font-weight:900}.step-meta{color:#e08645;font-size:21rpx;margin:8rpx 0}.step-uses{font-size:20rpx;color:#a38c79;background:#fff8e7;padding:10rpx 13rpx;border-radius:12rpx;margin-top:13rpx}.mini-label{font-size:23rpx;color:#a76938;font-weight:800;margin-top:20rpx}.start{width:100%}
+.recipe-page{min-height:100vh;padding-bottom:calc(185rpx + env(safe-area-inset-bottom));background:#fff7f3;color:#542c35}
+.recipe-cover{display:block;width:100%;height:370rpx;background:#ffe9de}
+.recipe-head{position:relative;margin-top:-26rpx;padding:29rpx 27rpx 27rpx;border-radius:30rpx 30rpx 0 0;background:#fffdfb;box-shadow:0 -7rpx 24rpx rgba(141,67,82,.07)}
+.kicker{display:inline-block;padding:8rpx 15rpx;border-radius:99rpx;background:#ffe8ee;color:#bf5d7b;font-size:21rpx;font-weight:800}
+.recipe-name{margin:17rpx 0 9rpx;color:#542c35;font-size:41rpx;font-weight:900;line-height:1.25}
+.recipe-head .muted{color:#a28288;font-size:23rpx;line-height:1.6}
+.stats{display:flex;gap:10rpx;margin-top:22rpx}
+.stats>view{flex:1;min-width:0;padding:16rpx 6rpx;border:2rpx solid #ffe1e7;border-radius:18rpx;background:#fff0f3;color:#a45370;font-size:22rpx;font-weight:800;line-height:1.3;text-align:center}
+.stats text{display:block;margin-top:5rpx;color:#b58b98;font-size:18rpx;font-weight:500}
+.recipe-section{margin:16rpx 24rpx;padding:24rpx;border:2rpx solid #f8e1e6;border-radius:24rpx;background:#fffdfb;box-shadow:0 7rpx 20rpx rgba(151,75,88,.06)}
+.recipe-section .section-title{color:#713b4b;font-size:30rpx;font-weight:900;line-height:1.3}
+.section-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12rpx}
+.people{display:flex;flex-wrap:wrap;gap:6rpx}
+.people text{padding:7rpx 11rpx;border-radius:99rpx;background:#fff0f3;color:#a97483;font-size:19rpx}
+.people .picked{background:#f56f91;color:#fff;font-weight:800}
+.scale-note{margin:17rpx 0;color:#ae8994;font-size:19rpx;line-height:1.45}
+.subhead{margin:20rpx 0 6rpx;color:#aa5973;font-size:22rpx;font-weight:900}
+.measure{display:flex;justify-content:space-between;gap:15rpx;padding:12rpx 0;border-bottom:1rpx dashed #f3dbe2;color:#684852;font-size:23rpx}
+.measure:last-child{border-bottom:0}
+.measure text:last-child{flex:none;color:#8a4a5d;font-weight:800}
+.body-text{margin-top:12rpx;color:#71545c;font-size:23rpx;line-height:1.68}
+.step{display:flex;gap:15rpx;padding:21rpx 0;border-bottom:2rpx dashed #f3dbe2}
+.step:last-child{border-bottom:0}
+.step-number{display:flex;flex:none;align-items:center;justify-content:center;width:45rpx;height:45rpx;border-radius:50%;background:#ffb9ca;color:#813d54;font-size:23rpx;font-weight:900}
+.step-body{flex:1;min-width:0}
+.step-title{color:#693946;font-size:26rpx;font-weight:900}
+.step-meta{margin:7rpx 0;color:#cf7790;font-size:20rpx}
+.step-uses{margin-top:13rpx;padding:10rpx 13rpx;border-radius:12rpx;background:#fff0f3;color:#a76278;font-size:20rpx;line-height:1.45}
+.mini-label{margin-top:20rpx;color:#a75270;font-size:22rpx;font-weight:900}
+.recipe-page .sticky-actions{padding:12rpx 24rpx calc(13rpx + env(safe-area-inset-bottom));border-top:2rpx solid #f8e4e8;background:rgba(255,250,249,.98);box-shadow:0 -8rpx 22rpx rgba(120,55,73,.08)}
+.start{width:100%;margin:0;padding:21rpx 30rpx;border:3rpx solid #ffafc0;border-radius:99rpx;background:linear-gradient(180deg,#ff9fb1,#f4567c);color:#fff;font-size:27rpx;font-weight:900;box-shadow:0 6rpx 14rpx rgba(224,74,112,.19)}
+@media (max-width:360px){.recipe-name{font-size:37rpx}.stats>view{font-size:19rpx}.stats text{font-size:16rpx}.recipe-section{margin-left:18rpx;margin-right:18rpx}}
