@@ -7,7 +7,7 @@
     <view class="top-links"><view class="current">菜单 <text>({{menuCount}})</text></view><view bindtap="goRandom">今天吃什么</view><view bindtap="goFavorites">♡ 收藏</view><view bindtap="goOrders">订单</view></view>
   </view>
   <image class="kitchen-strip" src="/assets/images/kitchen-strip.jpg" mode="widthFix"/>
-  <view class="special-feature" bindtap="detail" data-id="special-love"><image src="/assets/images/shinchan-love.jpg" mode="aspectFill"/><view class="special-copy"><view class="special-kicker">💗 女朋友专属 · 无限供应</view><view class="special-title">可亲可抱可爱爱</view><view class="special-desc">主厨限定，甜蜜不限量</view><view class="special-cta">立即召唤闪电 ⚡</view></view></view>
+  <view class="special-feature" bindtap="detail" data-id="special-love"><image src="/assets/images/shinchan-love.jpg" mode="aspectFill"/><view class="special-copy"><view class="special-kicker">💗 女朋友专属 · 无限供应</view><view class="special-title">只属于冯晓霞</view><view class="special-desc">主厨限定，甜蜜不限量</view><view class="special-cta">立刻召唤闪电⚡</view></view><view class="love-energy"><view class="love-energy-label">今日心动值 ♡</view><view class="love-energy-value"><text class="love-energy-heart">💗</text><text>99+</text></view><view class="love-energy-track"><view class="love-energy-fill"/></view><view class="love-energy-caption">甜度爆表 ✨</view></view></view>
   <view class="menu-layout">
     <view class="cat-list"><view wx:for="{{categories}}" wx:key="id" class="cat {{selected===item.id?'active':''}}" data-id="{{item.id}}" bindtap="tapCategory"><text class="cat-emoji">{{item.emoji}}</text><text>{{item.short}}</text></view></view>
     <view class="dish-list">

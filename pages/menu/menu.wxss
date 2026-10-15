@@ -121,3 +121,18 @@
 .cart-sheet-sum text:last-child{color:#aa8790;font-size:19rpx;font-weight:400}
 .cart-sheet-submit{flex:none;margin:0;padding:18rpx 26rpx;border-radius:99rpx;background:linear-gradient(180deg,#ff9caf,#f4587d);color:#fff;font-size:24rpx;font-weight:900;line-height:1.2}
 .cart-sheet-submit[disabled]{opacity:.55}
+
+/* Decorative love meter fits beside the existing feature copy. */
+.special-copy{flex:1 1 0;width:0;min-width:0;padding-right:8rpx}
+.special-kicker,.special-title,.special-desc,.special-cta{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.love-energy{flex:0 0 154rpx;width:154rpx;min-width:0;margin-right:12rpx;padding:9rpx 10rpx 8rpx;box-sizing:border-box;border:2rpx solid #ffd7e1;border-radius:18rpx;background:linear-gradient(145deg,#fffafd,#ffeaf1);text-align:center;color:#b75b78}
+.love-energy-label,.love-energy-caption{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.25}
+.love-energy-label{font-size:18rpx;font-weight:700}
+.love-energy-value{display:flex;align-items:center;justify-content:center;gap:5rpx;margin:4rpx 0;color:#ed5b83;font-size:32rpx;font-weight:900;line-height:1.2;white-space:nowrap}
+.love-energy-heart{display:inline-block;font-size:26rpx;animation:love-energy-heartbeat 2.4s ease-in-out infinite}
+.love-energy-track{height:9rpx;overflow:hidden;border-radius:99rpx;background:#ffe0e9}
+.love-energy-fill{width:99%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ffb9cf,#f56b99);transform-origin:left center;animation:love-energy-grow 1.1s ease-out both}
+.love-energy-caption{margin-top:6rpx;font-size:18rpx;font-weight:800}
+@keyframes love-energy-heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.12)}24%{transform:scale(1)}36%{transform:scale(1.08)}48%{transform:scale(1)}}
+@keyframes love-energy-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-height:600px){.love-energy{padding-top:5rpx;padding-bottom:5rpx}.love-energy-value{margin:2rpx 0;font-size:28rpx}.love-energy-caption{margin-top:3rpx}}

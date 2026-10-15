@@ -19,7 +19,7 @@ const rows = {
  veg:[['番茄炒蛋',1,15],['干煸四季豆',2,32],['麻婆豆腐',2,23],['蚝油生菜',1,10],['酸辣土豆丝',1,16],['炒空心菜',1,10],['茼蒿豆腐汤',1,15],['鸡蛋豆腐香菇汤',1,17],['虎皮鸡蛋',2,36],['擂椒皮蛋',1,18]],
  drink:[['拿铁',1,10],['冰美式',1,7],['柠檬蜂蜜水',1,8],['冰柠檬茶',1,12]]
 };
-const items=[{id:'special-love',categoryId:'special',name:'可亲可抱可爱爱',description:'闪电主厨限定服务，亲亲、抱抱、贴贴，甜蜜不限量！',image:'/assets/images/shinchan-love.jpg',price:0,available:true,recommended:true,type:'special_service',requiresRecipe:false,tags:['女朋友专属','无限供应','主厨限定']}];
+const items=[{id:'special-love',categoryId:'special',name:'只属于冯晓霞',description:'闪电主厨限定服务，亲亲、抱抱、贴贴，甜蜜不限量！',image:'/assets/images/shinchan-love.jpg',price:0,available:true,recommended:true,type:'special_service',requiresRecipe:false,tags:['女朋友专属','无限供应','主厨限定']}];
 Object.keys(rows).forEach(categoryId=>rows[categoryId].forEach((r,index)=>{const id=`${categoryId}-${index+1}`;items.push({id,categoryId,name:r[0],description:`闪电主厨的暖心${categories.find(c=>c.id===categoryId).short}手作，认真做好每一口。`,image:`/assets/images/dishes/${id}.jpg`,price:categoryId==='drink'?6:r[1]*8+7,difficulty:r[1],minutes:r[2],servings:2,available:true,recommended:index===0,type:'dish',requiresRecipe:true})}));
 const descriptions={
 chicken:['可乐慢慢收成亮汁，鸡翅甜咸入味。','鸡肉和土豆一起炖软，汤汁拌饭最香。','酱香浓郁的家常红烧鸡翅。','外皮金黄，蒜香和柠檬香刚刚好。'],
